@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/base_toolbar_ll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/base_toolbar"
+        style="@style/ClubToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/toolbar_color"
+        android:orientation="vertical">
+
+        <!--android:minHeight="?attr/actionBarSize"-->
+        <!--android:paddingTop="@dimen/toolbar_padding_top"-->
+    </android.support.v7.widget.Toolbar>
+
+
+</LinearLayout>

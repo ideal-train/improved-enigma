@@ -8,4 +8,20 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- ********************************** 主题 ********************************** -->
+    <!--启动前背景图全屏-->
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/app_start_bg</item>
+    </style>
+
+    <!--状态栏透明-->
+    <style name="AcTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!--APP全局背景色-->
+        <item name="android:windowBackground">@color/app_bg</item>
+    </style>
+
 </resources>

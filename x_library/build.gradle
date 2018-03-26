@@ -32,10 +32,13 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     def androidDependencies = rootProject.ext.androidDependencies
     // gson
-    compile androidDependencies.gson
     compile androidDependencies.circleimageview
     compile androidDependencies.glide
     compile androidDependencies.gson
     compile androidDependencies.logger
+    compile androidDependencies.butterknife
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    //    规范安卓UI响应 以RxJava的形式来处理UI事件
+    compile androidDependencies.rxbinding
     compile deployDependencies.design
 }
