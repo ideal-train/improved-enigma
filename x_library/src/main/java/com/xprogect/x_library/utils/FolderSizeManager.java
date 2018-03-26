@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import java.io.File;
 import java.math.BigDecimal;
 
-public class GetFolderSizeManager {
+public class FolderSizeManager {
     /**
      * 获取文件夹大小
      *

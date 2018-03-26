@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    
+
     repositories {
         maven { url 'https://maven.google.com' }
         jcenter()
@@ -66,6 +66,7 @@ ext {
             circleimageview              : "de.hdodenhof:circleimageview:${circleimageview}",
             glide                        : "com.github.bumptech.glide:glide:4.6.1",
             annotationProcessor          : "om.github.bumptech.glide:compiler:4.6.1",
+            logger                       : "com.orhanobut:logger:2.1.1",
             gson                         : "com.google.code.gson:gson:2.8.2"
     ]
 }

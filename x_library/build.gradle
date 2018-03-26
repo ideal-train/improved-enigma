@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 
 android {
+    //我只想把适合自己使用的方法加入进来，一点点来吧
     compileSdkVersion rootProject.ext.androidCompileSdkVersion
 
     defaultConfig {
@@ -35,4 +36,6 @@ dependencies {
     compile androidDependencies.circleimageview
     compile androidDependencies.glide
     compile androidDependencies.gson
+    compile androidDependencies.logger
+    compile deployDependencies.design
 }
