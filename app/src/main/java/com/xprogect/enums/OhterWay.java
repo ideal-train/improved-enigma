@@ -2,6 +2,9 @@ package com.xprogect.enums;
 
 import android.support.annotation.IntDef;
 
+import com.xprogect.MyApplication;
+import com.xprogect.application.R;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -12,9 +15,10 @@ import java.lang.annotation.RetentionPolicy;
 
 public class OhterWay {
 
-    public static final int VANILLA = 0;
-    public static final int CHOCOLATE = 1;
-    public static final int STRAWBERRY = 2;
+    public static final int HOME_0 = 0;
+    public static final int FIND_1 = 1;
+    public static final int CHAT_2 = 2;
+    public static final int MINE_3 = 3;
 
     /**
      * 用 @IntDef "包住" 常量；
@@ -22,23 +26,25 @@ public class OhterWay {
      * @Retention 定义策略--注解仅存在与源码中,不加入到class文件中
      * 声明构造器
      */
-    @IntDef({VANILLA, CHOCOLATE, STRAWBERRY})
+    @IntDef({HOME_0, FIND_1, CHAT_2, MINE_3})
     @Retention(RetentionPolicy.SOURCE)
     public @interface Flavour {
     }
 
 
-    public static String getFlavour(@Flavour int flavour) {
+    public static String getFlavour( @Flavour int flavour) {
         int type = flavour;
         switch (type) {
-            case CHOCOLATE:
-                return "女";
-            case STRAWBERRY:
-                return "男";
-            case VANILLA:
-                return "位置";
+            case HOME_0:
+                return MyApplication.getContext().getString(R.string.home);
+            case FIND_1:
+                return MyApplication.getContext().getString(R.string.find);
+            case CHAT_2:
+                return MyApplication.getContext().getString(R.string.chat);
+            case MINE_3:
+                return MyApplication.getContext().getString(R.string.mine);
             default:
-                return "超限";
+                return MyApplication.getContext().getString(R.string.other);
         }
     }
 }

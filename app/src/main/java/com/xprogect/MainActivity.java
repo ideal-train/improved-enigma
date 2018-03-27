@@ -9,7 +9,8 @@ import android.view.View;
 
 import com.orhanobut.logger.Logger;
 import com.xprogect.application.R;
-import com.xprogect.fragment.HomeHotFragment;
+import com.xprogect.enums.OhterWay;
+import com.xprogect.fragment.HomeFragment;
 import com.xprogect.x_library.base.BaseTooBarActivity;
 import com.xprogect.x_library.utils.MyLog;
 import com.xprogect.x_library.utils.StatusBarUtil;
@@ -45,20 +46,20 @@ public class MainActivity extends BaseTooBarActivity {
             public void onCheckedChanged(KeyRadioGroupV1 group, @IdRes int checkedId) {
                 switch (checkedId) {
                     case R.id.rb_hot:
-                        bundle.putString("home", "首页");
-                        switchFragment(HomeHotFragment.getInstance(), bundle);
+                        bundle.putInt("home", OhterWay.HOME_0);
+                        switchFragment(HomeFragment.getInstance(), bundle);
                         break;
                     case R.id.rb_wiki:
-                        bundle.putString("home", "发现");
-                        switchFragment(HomeHotFragment.getInstance(), bundle);
+                        bundle.putInt("home",  OhterWay.FIND_1);
+                        switchFragment(HomeFragment.getInstance(), bundle);
                         break;
                     case R.id.rb_chats:
-                        bundle.putString("home", "聊天");
-                        switchFragment(HomeHotFragment.getInstance(), bundle);
+                        bundle.putInt("home", OhterWay.CHAT_2);
+                        switchFragment(HomeFragment.getInstance(), bundle);
                         break;
                     case R.id.rb_mine:
-                        bundle.putString("home", "我的");
-                        switchFragment(new HomeHotFragment(), bundle);
+                        bundle.putInt("home", OhterWay.HOME_0);
+                        switchFragment(new HomeFragment(), bundle);
                         fakeStatusBar.setVisibility(View.GONE);
                         break;
                     default:
@@ -66,8 +67,8 @@ public class MainActivity extends BaseTooBarActivity {
                 }
             }
         });
-        bundle.putString("home", "首页");
-        switchFragment(HomeHotFragment.getInstance(), bundle);
+        bundle.putInt("home", OhterWay.HOME_0);
+        switchFragment(HomeFragment.getInstance(), bundle);
     }
 
 

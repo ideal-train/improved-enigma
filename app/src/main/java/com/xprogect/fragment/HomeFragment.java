@@ -14,18 +14,18 @@ import butterknife.BindView;
 /**
  * 热门
  */
-public class HomeHotFragment extends BaseFragment {
+public class HomeFragment extends BaseFragment {
     @BindView(R.id.fg_tv)
     TextView fg_tv;
 
-    private static HomeHotFragment myFragment;
+    private static HomeFragment myFragment;
 
-    public static HomeHotFragment getInstance() {
-        myFragment = new HomeHotFragment();
+    public static HomeFragment getInstance() {
+        myFragment = new HomeFragment();
         return myFragment;
     }
 
-    public HomeHotFragment() {
+    public HomeFragment() {
         // Required empty public constructor
     }
 
@@ -39,10 +39,10 @@ public class HomeHotFragment extends BaseFragment {
     protected void initView(View view) {
 //getResources().geti
         Bundle bundle = this.getArguments();
-        fg_tv.setText(bundle.getString("home"));
+        fg_tv.setText( OhterWay.getFlavour(bundle.getInt("home")));
 
-        OhterWay.getFlavour(OhterWay.CHOCOLATE);
-        otherWay(OhterWay.CHOCOLATE);
+
+        otherWay(OhterWay.FIND_1);
 
 
     }
