@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <!--主要色调，actionBar默认使用该颜色，Toolbar导航栏的底色-->
+    <color name="colorPrimary">#db5ed3</color>
+    <!--状态栏颜色-->
+    <color name="colorPrimaryDark">#db5ed3</color>
+    <!--默认文字 选择框 滑块的边框色-->
     <color name="colorAccent">#FF4081</color>
 
     <color name="white">#ffffff</color>
     <color name="app_bg">#f8f8f8</color>
+    <color name="font_gray">#929292</color>
 </resources>

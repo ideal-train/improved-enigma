@@ -1,11 +1,14 @@
 package com.xprogect.x_library.base;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.annotation.BoolRes;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,7 +24,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * Created by lijiafu on 2017/12/19.
- * 功能：Activity的基类
+ * 功能：Activity的基类 一般页面不直接使用该基类（仅仅作为一个功能集合页面，不参与过多逻辑）
  */
 
 public class BaseActivity extends AppCompatActivity {
@@ -56,7 +59,8 @@ public class BaseActivity extends AppCompatActivity {
      *
      * @param isAllowScreenRoate true，竖屏；false，横屏。
      */
-    public void setScreenVertical(boolean isAllowScreenRoate) {
+    @SuppressLint("SupportAnnotationUsage")
+    public void setScreenVertical(@BoolRes boolean isAllowScreenRoate) {
         if (isAlwaysVertical) {
             //禁止横竖屏切换 固定竖屏
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -76,11 +80,13 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
-    public void toast(String text) {
+    @SuppressLint("SupportAnnotationUsage")
+    public void toast(@StringRes String text) {
         ToastUtil.show(getApplicationContext(), text);
     }
 
-    public void toast(String text, @Nullable int duration) {
+    @SuppressLint("SupportAnnotationUsage")
+    public void toast(@StringRes String text, @Nullable int duration) {
         if (duration == 0) {
             ToastUtil.show(getApplicationContext(), text, Toast.LENGTH_SHORT);
         } else {

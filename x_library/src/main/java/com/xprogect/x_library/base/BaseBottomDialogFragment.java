@@ -16,7 +16,7 @@ import com.xprogect.x_library.R;
 import butterknife.ButterKnife;
 
 /**
- * 底部弹窗
+ * 底部弹窗-DialogFragment
  */
 public abstract class BaseBottomDialogFragment extends DialogFragment {
     //资源ID

@@ -35,4 +35,13 @@
         <item name="contentInsetRight">0dp</item>
     </style>
 
+    <!--自定义radiobutton-->
+    <declare-styleable name="MyRadioButton">
+        <attr name="drawableSize" format="dimension" />
+        <attr name="drawableTop" format="reference" />
+        <attr name="drawableLeft" format="reference" />
+        <attr name="drawableRight" format="reference" />
+        <attr name="drawableBottom" format="reference" />
+    </declare-styleable>
+
 </resources>

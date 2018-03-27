@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myradio="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+
+    <com.xprogect.x_library.widget.KeyRadioGroupV1
+        android:id="@+id/rg_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.xprogect.x_library.widget.MyRadioButton
+                android:id="@+id/rb_hot"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:checked="true"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="首页"
+                android:textColor="@drawable/radio_text_selector"
+                android:textSize="12sp"
+                myradio:drawableSize="25dp"
+                myradio:drawableTop="@drawable/radio_hot" />
+
+            <com.xprogect.x_library.widget.MyRadioButton
+                android:id="@+id/rb_wiki"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="发现"
+                android:textColor="@drawable/radio_text_selector"
+                android:textSize="12sp"
+                myradio:drawableSize="25dp"
+                myradio:drawableTop="@drawable/radio_wiki" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/rb_fabu"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/tab_fabu" />
+            </LinearLayout>
+
+            <com.xprogect.x_library.widget.MyRadioButton
+                android:id="@+id/rb_chats"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="聊天"
+                android:textColor="@drawable/radio_text_selector"
+                android:textSize="12sp"
+                myradio:drawableSize="25dp"
+                myradio:drawableTop="@drawable/radio_chat" />
+
+            <com.xprogect.x_library.widget.MyRadioButton
+                android:id="@+id/rb_mine"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="我的"
+                android:textColor="@drawable/radio_text_selector"
+                android:textSize="12sp"
+                myradio:drawableSize="25dp"
+                myradio:drawableTop="@drawable/radio_mine" />
+        </LinearLayout>
+    </com.xprogect.x_library.widget.KeyRadioGroupV1>
+
+</RelativeLayout>

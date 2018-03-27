@@ -1,7 +1,10 @@
 package com.xprogect.x_library.base;
 
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
+import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -17,7 +20,7 @@ import butterknife.Unbinder;
 
 
 /**
- * Fragment 基类
+ * Fragment 的大基类
  */
 public abstract class BaseFragment extends Fragment {
 
@@ -68,11 +71,11 @@ public abstract class BaseFragment extends Fragment {
         super.onDestroy();
     }
 
-    public void toast(String msg) {
+    public void toast(@SuppressLint("SupportAnnotationUsage") @StringRes String msg) {
         ToastUtil.show(getActivity(), msg);
     }
 
-    public void toast(int resId) {
+    public void toast(@IdRes int resId) {
         ToastUtil.show(getActivity(), resId);
     }
 
@@ -81,7 +84,7 @@ public abstract class BaseFragment extends Fragment {
      * @param fragment 添加的Fragment
      * @param bundle   传递的参数
      */
-    public void switchFragment(int ids, Fragment fragment, Bundle bundle) {
+    public void switchFragment(@IdRes int ids, Fragment fragment, Bundle bundle) {
         try {
             FragmentManager manager = getChildFragmentManager();
             FragmentTransaction ft = manager.beginTransaction();
