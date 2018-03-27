@@ -6,6 +6,8 @@ package com.xprogect.x_library.utils;
  */
 
 public class XConstants {
-    //RX防重复点击时间 单位:秒
+    /**
+     * RX防重复点击时间 单位:秒
+     */
     public static final int RX_REPEAT_TIME = 3;
 }

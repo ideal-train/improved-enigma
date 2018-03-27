@@ -16,8 +16,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.util.Util;
-import com.jakewharton.rxbinding2.view.RxView;
 import com.xprogect.x_library.R;
+import com.xprogect.x_library.utils.RxOnSubscribe;
 import com.xprogect.x_library.utils.StatusBarUtil;
 import com.xprogect.x_library.utils.XConstants;
 
@@ -25,7 +25,8 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import io.reactivex.functions.Consumer;
+import rx.Observable;
+import rx.functions.Action1;
 
 /**
  * Created by JFL on 2017/12/19
@@ -186,12 +187,21 @@ public abstract class BaseTooBarActivity extends BaseActivity {
 
 
     private void mRightClick() {
-        RxView.clicks(rightView)
-                // 3秒钟之内只取一个点击事件，防抖操作
+//        RxView.clicks(rightView)
+//                // 3秒钟之内只取一个点击事件，防抖操作
+//                .throttleFirst(XConstants.RX_REPEAT_TIME, TimeUnit.SECONDS)
+//                .subscribe(new Consumer<Object>() {
+//                    @Override
+//                    public void accept(Object o) throws Exception {
+//                        rightAction();
+//                    }
+//                });
+
+        Observable.create(new RxOnSubscribe(rightView))
                 .throttleFirst(XConstants.RX_REPEAT_TIME, TimeUnit.SECONDS)
-                .subscribe(new Consumer<Object>() {
+                .subscribe(new Action1<View>() {
                     @Override
-                    public void accept(Object o) throws Exception {
+                    public void call(View view) {
                         rightAction();
                     }
                 });

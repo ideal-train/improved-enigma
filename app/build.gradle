@@ -34,4 +34,7 @@ dependencies {
     compile project(':x_library')
     compile androidDependencies.butterknife
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    //  retrofit2需要相关的依赖
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.5.0'
 }
