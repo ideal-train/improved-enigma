@@ -1,4 +1,4 @@
-package com.xprogect.fragment;
+package com.xprogect.home;
 
 
 import android.os.Bundle;
@@ -12,13 +12,14 @@ import com.xprogect.x_library.base.BaseFragment;
 import butterknife.BindView;
 
 /**
- * 热门
+ * 首页
  */
 public class HomeFragment extends BaseFragment {
     @BindView(R.id.fg_tv)
     TextView fg_tv;
 
     private static HomeFragment myFragment;
+
 
     public static HomeFragment getInstance() {
         myFragment = new HomeFragment();
@@ -42,7 +43,7 @@ public class HomeFragment extends BaseFragment {
         fg_tv.setText( OhterWay.getFlavour(bundle.getInt("home")));
 
 
-        otherWay(OhterWay.FIND_1);
+//        otherWay(OhterWay.FIND_1);
 
 
     }
@@ -51,4 +52,6 @@ public class HomeFragment extends BaseFragment {
     private void otherWay(@OhterWay.Flavour int type){
 
     }
+
+
 }

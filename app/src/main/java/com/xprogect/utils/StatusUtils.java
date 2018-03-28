@@ -9,14 +9,19 @@ import com.xprogect.contests.RequestCons;
 public class StatusUtils {
 
     public static class StatusResult {
-        public int status;
-        public String desc;
-        public boolean isSuccess;
+        private int status;
+        private String desc;
+        private boolean isSuccess;
+
+        public String getException() {
+            return "错误码：" + mStatusResult.status +
+                    "错误信息：" + mStatusResult.desc;
+        }
     }
 
     private static StatusResult mStatusResult = new StatusResult();
 
-    public static StatusResult judgeStatus(int status) {
+    public static StatusResult judgeStatus(int status, String message) {
 
         String desc = "";
         boolean isSuccess = false;
@@ -29,6 +34,7 @@ public class StatusUtils {
                 desc = RequestCons.FAILURE_1000;
                 break;
             default:
+                desc = message;
                 break;
 
         }
@@ -36,5 +42,5 @@ public class StatusUtils {
         mStatusResult.desc = desc;
         mStatusResult.isSuccess = isSuccess;
         return mStatusResult;
-    }
-}
+    }}
+

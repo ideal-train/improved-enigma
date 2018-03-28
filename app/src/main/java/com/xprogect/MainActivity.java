@@ -10,7 +10,8 @@ import android.view.View;
 import com.orhanobut.logger.Logger;
 import com.xprogect.application.R;
 import com.xprogect.enums.OhterWay;
-import com.xprogect.fragment.HomeFragment;
+import com.xprogect.find.FindFragment;
+import com.xprogect.home.HomeFragment;
 import com.xprogect.x_library.base.BaseTooBarActivity;
 import com.xprogect.x_library.utils.MyLog;
 import com.xprogect.x_library.utils.StatusBarUtil;
@@ -51,7 +52,7 @@ public class MainActivity extends BaseTooBarActivity {
                         break;
                     case R.id.rb_wiki:
                         bundle.putInt("home",  OhterWay.FIND_1);
-                        switchFragment(HomeFragment.getInstance(), bundle);
+                        switchFragment(FindFragment.getInstance(), bundle);
                         break;
                     case R.id.rb_chats:
                         bundle.putInt("home", OhterWay.CHAT_2);

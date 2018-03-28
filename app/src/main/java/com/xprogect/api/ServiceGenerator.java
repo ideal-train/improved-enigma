@@ -1,7 +1,12 @@
 package com.xprogect.api;
 
+import android.content.Context;
+
+import com.xprogect.MyApplication;
 import com.xprogect.api.init.ApiException;
 import com.xprogect.api.init.BeanFactory;
+import com.xprogect.api.init.CenterParameterInterceptor;
+import com.xprogect.bean.HomeBean;
 import com.xprogect.contests.RequestCons;
 import com.xprogect.x_library.BuildConfig;
 
@@ -27,6 +32,7 @@ import static com.xprogect.contests.RequestCons.STATUS_SUCCESS;
 public class ServiceGenerator<T> {
     private static String baseUrl;
     private static Retrofit mRetrofit;
+    private static Context mContext;
 
     public static void initRetrofit() {
         baseUrl = RequestCons.BASE_URL;
@@ -38,6 +44,10 @@ public class ServiceGenerator<T> {
             loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE);
         }
 
+
+        CenterParameterInterceptor parameterInterceptor = new CenterParameterInterceptor(MyApplication.getContext());
+
+
         OkHttpClient client = new OkHttpClient.Builder()
                 //连接超时时间
                 .connectTimeout(DEFAULT_TIME_OUT, TimeUnit.SECONDS)
@@ -46,13 +56,20 @@ public class ServiceGenerator<T> {
                 //读操作超时时间
                 .readTimeout(DEFAULT_TIME_OUT, TimeUnit.SECONDS)
                 .addInterceptor(loggingInterceptor)
+                .addInterceptor(parameterInterceptor)
                 .build();
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .client(client)
+                //增加返回值为Gson的支持(以实体类返回)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
+    }
+
+    public static <S> S createRetrofitService(Class<S> mDataClick, Context context) {
+        mContext=context;
+        return createRetrofitService(mDataClick);
     }
 
     public static <S> S createRetrofitService(Class<S> mDataClick) {
@@ -66,7 +83,7 @@ public class ServiceGenerator<T> {
      * @param observable
      * @return
      */
-    public static Observable filterStatus(Observable observable) {
+    public static Observable filterStatus(Observable<BeanFactory<HomeBean>> observable) {
         return observable.map(new ResultFilter());
     }
 
@@ -76,7 +93,7 @@ public class ServiceGenerator<T> {
             if (tHttpBean.getStatus() == STATUS_SUCCESS) {
                 return tHttpBean.getData();
             } else {
-                throw new ApiException(tHttpBean.getStatus());
+                throw new ApiException(tHttpBean.getStatus(),tHttpBean.getMsg());
             }
         }
     }

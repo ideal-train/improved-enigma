@@ -30,7 +30,7 @@ public abstract class SubscriberFactory<T> extends Subscriber<T> {
         }else {
             error = e.getMessage();
         }
-        MyLog.e(error+"-------------"+e.toString());
+        MyLog.e("ApiException "+error);
     }
 
     @Override

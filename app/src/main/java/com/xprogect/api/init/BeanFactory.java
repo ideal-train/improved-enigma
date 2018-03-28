@@ -4,25 +4,25 @@ package com.xprogect.api.init;
  * @param <T> 基类的解析工厂
  */
 public class BeanFactory<T> {
-    private String info;
-    private T list;
+    private String message;
+    private T result;
     private int status;
     private long ts;
 
     public String getMsg() {
-        return info;
+        return message;
     }
 
     public void setMsg(String msg) {
-        this.info = msg;
+        this.message = msg;
     }
 
     public T getData() {
-        return list;
+        return result;
     }
 
     public void setData(T data) {
-        this.list = data;
+        this.result = data;
     }
 
     public int getStatus() {
@@ -44,9 +44,9 @@ public class BeanFactory<T> {
     @Override
     public String toString() {
         return "BeanFactory{" +
-                "msg='" + info + '\'' +
-                ", data=" + list +
-                ", status=" + info +
+                "msg='" + message + '\'' +
+                ", data=" + result +
+                ", status=" + status +
                 ", ts=" + ts +
                 '}';
     }

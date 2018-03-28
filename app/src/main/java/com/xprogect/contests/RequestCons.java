@@ -6,10 +6,19 @@ package com.xprogect.contests;
 public class RequestCons {
 
     /**
-     * 主机IP
+     * 主机IP(域名)
      */
-    public static final String BASE_URL = "https://snsbao.com/jujiao/admin.php/api/";
+    public static final String DOMAIN = "https://www.rongtousky.com/";
+    /**
+     * 接口版本
+     */
+    public static final String BASE_URL_V1 = "api/client/v1/";
+    /**
+     * 访问地址
+     */
+    public static final String BASE_URL = DOMAIN + BASE_URL_V1;
 
+    public static final String APP_TAG = "android";
 
 //  ------------------------网络请求相关Start-----------------------------------
     /**
@@ -17,7 +26,7 @@ public class RequestCons {
      */
     public static final int DEFAULT_TIME_OUT = 30;
 
-    public static final int STATUS_SUCCESS = 1;
+    public static final int STATUS_SUCCESS = 1001;
     public static final String SUCCESS_MSG = "成功";
 
     public static final int STATU_1000 = 1000;
