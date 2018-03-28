@@ -1,4 +1,4 @@
-package com.xprogect.home;
+package com.xprogect.find;
 
 
 import com.xprogect.api.FindClick;
@@ -45,6 +45,7 @@ public class FindperesenterImpl implements FindContart.Presenter {
                     @Override
                     public void onError(Throwable e) {
                         super.onError(e);
+                        mView.requestError();
                     }
                 });
     }

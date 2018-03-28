@@ -2,11 +2,6 @@ package com.xprogect.api.init;
 
 import android.support.annotation.NonNull;
 
-/**
- * Created by antikvo on 2017/2/9.
- * abc
- */
-
 public class BasicNameValuePair implements NameValuePair {
     private String name;
     private String value;

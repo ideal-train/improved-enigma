@@ -59,7 +59,7 @@ public class MainActivity extends BaseTooBarActivity {
                         switchFragment(HomeFragment.getInstance(), bundle);
                         break;
                     case R.id.rb_mine:
-                        bundle.putInt("home", OhterWay.HOME_0);
+                        bundle.putInt("home", OhterWay.MINE_3);
                         switchFragment(new HomeFragment(), bundle);
                         fakeStatusBar.setVisibility(View.GONE);
                         break;

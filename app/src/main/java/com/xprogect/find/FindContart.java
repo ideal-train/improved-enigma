@@ -1,4 +1,4 @@
-package com.xprogect.home;
+package com.xprogect.find;
 
 import com.xprogect.bean.HomeBean;
 

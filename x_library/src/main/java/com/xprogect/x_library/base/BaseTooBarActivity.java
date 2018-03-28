@@ -240,11 +240,20 @@ public abstract class BaseTooBarActivity extends BaseActivity {
     /**
      * @param title 中间的标题--已添加返回事件(不需要此功能需要重写leftAction)
      */
-    public void setTitle(String title) {
+    @SuppressLint("SupportAnnotationUsage")
+    public void setTitle(@StringRes String title) {
         initBaseTooBarContent();
         if (mToolTarTitle == null)
             return;
         mToolTarTitle.setText(title);
+        mLeftClick();
+    }
+
+    public void setTitle(@StringRes int title) {
+        initBaseTooBarContent();
+        if (mToolTarTitle == null)
+            return;
+        mToolTarTitle.setText(getString(title));
         mLeftClick();
     }
 

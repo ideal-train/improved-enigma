@@ -8,6 +8,7 @@ import com.xprogect.api.init.BeanFactory;
 import com.xprogect.api.init.CenterParameterInterceptor;
 import com.xprogect.bean.HomeBean;
 import com.xprogect.contests.RequestCons;
+import com.xprogect.api.init.NetWorkInterceptor;
 import com.xprogect.x_library.BuildConfig;
 
 import java.util.concurrent.TimeUnit;
@@ -55,6 +56,7 @@ public class ServiceGenerator<T> {
                 .writeTimeout(DEFAULT_TIME_OUT, TimeUnit.SECONDS)
                 //读操作超时时间
                 .readTimeout(DEFAULT_TIME_OUT, TimeUnit.SECONDS)
+                .addInterceptor(new NetWorkInterceptor())
                 .addInterceptor(loggingInterceptor)
                 .addInterceptor(parameterInterceptor)
                 .build();
@@ -68,7 +70,7 @@ public class ServiceGenerator<T> {
     }
 
     public static <S> S createRetrofitService(Class<S> mDataClick, Context context) {
-        mContext=context;
+        mContext = context;
         return createRetrofitService(mDataClick);
     }
 
@@ -93,7 +95,7 @@ public class ServiceGenerator<T> {
             if (tHttpBean.getStatus() == STATUS_SUCCESS) {
                 return tHttpBean.getData();
             } else {
-                throw new ApiException(tHttpBean.getStatus(),tHttpBean.getMsg());
+                throw new ApiException(tHttpBean.getStatus(), tHttpBean.getMsg());
             }
         }
     }
