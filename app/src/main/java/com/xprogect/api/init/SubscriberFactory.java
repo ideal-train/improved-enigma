@@ -15,6 +15,12 @@ public abstract class SubscriberFactory<T> extends Subscriber<T> {
 
     public String error;
 
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
     @Override
     public abstract void onCompleted();
 
