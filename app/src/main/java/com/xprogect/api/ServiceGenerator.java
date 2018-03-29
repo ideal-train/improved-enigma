@@ -6,9 +6,8 @@ import com.xprogect.MyApplication;
 import com.xprogect.api.init.ApiException;
 import com.xprogect.api.init.BeanFactory;
 import com.xprogect.api.init.CenterParameterInterceptor;
-import com.xprogect.bean.HomeBean;
-import com.xprogect.contests.RequestCons;
 import com.xprogect.api.init.NetWorkInterceptor;
+import com.xprogect.contests.RequestCons;
 import com.xprogect.x_library.BuildConfig;
 
 import java.util.concurrent.TimeUnit;
@@ -19,7 +18,9 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 import static com.xprogect.contests.RequestCons.DEFAULT_TIME_OUT;
 import static com.xprogect.contests.RequestCons.STATUS_SUCCESS;
@@ -85,8 +86,17 @@ public class ServiceGenerator<T> {
      * @param observable
      * @return
      */
-    public static Observable filterStatus(Observable<BeanFactory<HomeBean>> observable) {
-        return observable.map(new ResultFilter());
+    public static Observable filterStatus(Observable observable) {
+        return observable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(new ResultFilter());
+    }
+
+    public Observable<T> filterStatuss(Observable<T> observable) {
+        return observable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     private static class ResultFilter<T> implements Func1<BeanFactory<T>, T> {

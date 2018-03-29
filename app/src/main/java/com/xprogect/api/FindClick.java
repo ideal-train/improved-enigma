@@ -25,4 +25,7 @@ public interface FindClick {
 
     @GET("index")
     Observable<BeanFactory<HomeBean>> getUrl(@Query("ep") String ep);
+
+    @GET("index")
+    Observable<HomeBean> getUrl2(@Query("ep") String ep);
 }
