@@ -38,7 +38,7 @@ public class ServiceGenerator<T> {
 
     public static void initRetrofit() {
         baseUrl = RequestCons.BASE_URL;
-
+//        日志拦截
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
         if (BuildConfig.DEBUG) {
             loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

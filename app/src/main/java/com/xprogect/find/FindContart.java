@@ -1,6 +1,7 @@
 package com.xprogect.find;
 
 import com.xprogect.bean.HomeBean;
+import com.xprogect.x_library.basemvp.BaseView;
 
 /**
  * Created by Administrator on 2018/3/21
@@ -8,7 +9,7 @@ import com.xprogect.bean.HomeBean;
  */
 
 public interface FindContart {
-    interface View {
+    interface View extends BaseView{
 
         void requestSuccess(HomeBean bean);
 

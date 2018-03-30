@@ -32,6 +32,7 @@ public class CenterParameterInterceptor implements Interceptor {
         HttpUrl url = addExtraParameters(original);
         Request.Builder requestBuilder = original.newBuilder().url(url);
         requestBuilder.header("access-agent", RequestCons.APP_TAG);
+//        添加请求头
 //        if (!TextUtils.isEmpty(TokenUtils.getToken(context)))
 //            requestBuilder.header("auth-token", TokenUtils.getToken(context));
         Request request = requestBuilder

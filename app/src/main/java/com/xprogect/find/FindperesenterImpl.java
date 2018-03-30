@@ -7,9 +7,6 @@ import com.xprogect.api.init.SubscriberFactory;
 import com.xprogect.bean.HomeBean;
 
 import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2018/3/21
@@ -32,12 +29,7 @@ public class FindperesenterImpl implements FindContart.Presenter {
         Observable<HomeBean> observable = ServiceGenerator.filterStatus(mTestClick.getUrl(null));
 
         observable
-                .subscribe(new SubscriberFactory<HomeBean>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
+                .subscribe(new SubscriberFactory<HomeBean>(mView._getContext()) {
                     @Override
                     public void onNext(HomeBean data) {
                         mView.requestSuccess(data);

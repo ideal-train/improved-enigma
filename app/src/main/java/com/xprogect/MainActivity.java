@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
-import com.orhanobut.logger.Logger;
 import com.xprogect.application.R;
 import com.xprogect.enums.OhterWay;
 import com.xprogect.find.FindFragment;
@@ -21,6 +20,7 @@ import butterknife.BindView;
 
 
 public class MainActivity extends BaseTooBarActivity {
+    private long exitTime = 0;
     @BindView(R.id.rg_bottom)
     KeyRadioGroupV1 rgBottom;
     @BindView(R.id.fake_status_bar)
@@ -39,7 +39,6 @@ public class MainActivity extends BaseTooBarActivity {
     @Override
     public void initView() {
         hitToolBar();
-        Logger.d("------------------------------------");
         MyLog.d("MainActivity", "onCreate:" + "");
         final Bundle bundle = new Bundle();
         rgBottom.setOnCheckedChangeListener(new KeyRadioGroupV1.OnCheckedChangeListener() {
@@ -87,4 +86,17 @@ public class MainActivity extends BaseTooBarActivity {
         } catch (Exception exceptione) {
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        long currentTime = System.currentTimeMillis();
+        if ((currentTime - exitTime) < 2000) {
+            super.onBackPressed();
+            finishAll();
+        } else {
+            toast("再按一次退出程序");
+            exitTime = currentTime;
+        }
+    }
+
 }

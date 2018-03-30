@@ -2,6 +2,7 @@ package com.xprogect.x_library.base;
 
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.StringRes;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.xprogect.x_library.basemvp.BaseView;
 import com.xprogect.x_library.utils.SoftKeyGoardUtil;
 import com.xprogect.x_library.utils.ToastUtil;
 
@@ -22,7 +24,7 @@ import butterknife.Unbinder;
 /**
  * Fragment 的大基类
  */
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment implements BaseView {
 
     public String TAG = getClass().getSimpleName();
 
@@ -115,4 +117,8 @@ public abstract class BaseFragment extends Fragment {
         softKeyGoardUtil.hideSoftInput();
     }
 
+    @Override
+    public Context _getContext() {
+        return getActivity();
+    }
 }

@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.xprogect.MainActivity" />
-        <activity android:name="com.xprogect.test.TitleActivity"></activity>
+        <activity android:name="com.xprogect.testtitle.TitleActivity"></activity>
     </application>
 
 </manifest>

@@ -16,6 +16,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.orhanobut.logger.Logger;
+import com.xprogect.x_library.basemvp.BaseView;
 import com.xprogect.x_library.utils.SoftKeyGoardUtil;
 import com.xprogect.x_library.utils.ToastUtil;
 import com.xprogect.x_library.utils.ToolUtil;
@@ -27,7 +28,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  * 功能：Activity的基类 一般页面不直接使用该基类（仅仅作为一个功能集合页面，不参与过多逻辑）
  */
 
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends AppCompatActivity implements BaseView {
 
     public String TAG = getClass().getSimpleName();
     private SoftKeyGoardUtil softKeyGoardUtil;
@@ -145,5 +146,10 @@ public class BaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Logger.d(this);
+    }
+
+    @Override
+    public Context _getContext() {
+        return this;
     }
 }
