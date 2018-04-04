@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Application</string>
+    <string name="app_name">Retrofit+Rx</string>
     <string name="home">首页</string>
     <string name="find">发现</string>
     <string name="chat">聊天</string>

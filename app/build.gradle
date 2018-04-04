@@ -1,8 +1,21 @@
 apply plugin: 'com.android.application'
 
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+
 android {
     compileSdkVersion rootProject.ext.androidCompileSdkVersion
     buildToolsVersion rootProject.ext.androidBuildToolsVersion
+    signingConfigs {
+        developKey {
+            keyAlias KEYALIAS
+            keyPassword KEYPASSWORD
+            storeFile file(STOREFILE)
+            storePassword STOREPASSWORD
+        }
+
+    }
     defaultConfig {
         applicationId rootProject.ext.applicationId
         minSdkVersion rootProject.ext.androidMinSdkVersion
@@ -11,9 +24,38 @@ android {
         versionName rootProject.ext.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                //这里修改apk文件名
+                def fileName = "${releaseTime() }-Android_Retrofit+Rx_版本号-${defaultConfig.versionCode}_版本名-${defaultConfig.versionName}_${variant.buildType.name}.apk"
+//                def fileName = "${releaseTime() }-Android_Retrofit+Rx_渠道${variant.productFlavors[0].name}_版本号-${defaultConfig.versionCode}_版本名-${defaultConfig.versionName}_${variant.buildType.name}.apk"
+                output.outputFile = new File(outputFile.parent, fileName)
+            }
+        }
+    }
+
+    productFlavors{
+        ID_APP{
+            buildConfigField("String", "APP_CHANNEL_ID", '"APP"')
+        }
+//        ID_10002{
+//            buildConfigField("String", "APP_CHANNEL_ID", '"10002"')
+//        }
+    }
+
     buildTypes {
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.developKey
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
         release {
             minifyEnabled false
+            signingConfig signingConfigs.ysdevelopKey
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
