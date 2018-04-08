@@ -22,19 +22,16 @@ android {
         targetSdkVersion rootProject.ext.androidTargetSdkVersion
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
+        flavorDimensions "versionCode"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
 
     android.applicationVariants.all { variant ->
-        variant.outputs.each { output ->
-            def outputFile = output.outputFile
-            if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                //这里修改apk文件名
-                def fileName = "${releaseTime() }-Android_Retrofit+Rx_版本号-${defaultConfig.versionCode}_版本名-${defaultConfig.versionName}_${variant.buildType.name}.apk"
-//                def fileName = "${releaseTime() }-Android_Retrofit+Rx_渠道${variant.productFlavors[0].name}_版本号-${defaultConfig.versionCode}_版本名-${defaultConfig.versionName}_${variant.buildType.name}.apk"
-                output.outputFile = new File(outputFile.parent, fileName)
-            }
+        // 这里修改apk文件名
+        def fileName = "${releaseTime() }-Android_Retrofit+Rx_版本号-${defaultConfig.versionCode}_版本名-${defaultConfig.versionName}_${variant.buildType.name}.apk"
+        variant.outputs.all { output ->
+            outputFileName = fileName
         }
     }
 
@@ -55,7 +52,7 @@ android {
         }
         release {
             minifyEnabled false
-            signingConfig signingConfigs.ysdevelopKey
+            signingConfig signingConfigs.developKey
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
