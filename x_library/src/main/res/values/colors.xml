@@ -4,6 +4,7 @@
     <!--标题栏颜色-->
     <color name="toolbar_color">#FF0072</color>
     <color name="app_white">#f9f9f9</color>
+    <color name="white">#ffffff</color>
 
 </resources>
 

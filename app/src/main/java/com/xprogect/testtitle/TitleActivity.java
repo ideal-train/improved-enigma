@@ -6,6 +6,7 @@ import com.xprogect.application.R;
 import com.xprogect.enums.OhterWay;
 import com.xprogect.x_library.base.BaseTooBarActivity;
 import com.xprogect.x_library.utils.DialogUtil;
+import com.xprogect.x_library.utils.StatusBarUtil;
 
 /**
  * Created by Administrator on 2018/3/28
@@ -31,6 +32,8 @@ public class TitleActivity extends BaseTooBarActivity implements DialogInterface
                 break;
             case OhterWay.HOME_0:
                 setTitle(OhterWay.getFlavour(page));
+                StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimary), 0);
+                StatusBarUtil.setDarkMode(this);
                 break;
             case OhterWay.MINE_3:
                 getLayoutInflater().inflate(R.layout.bottom_bar, getBaseToolBar());

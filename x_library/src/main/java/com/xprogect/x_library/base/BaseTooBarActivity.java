@@ -87,8 +87,8 @@ public abstract class BaseTooBarActivity extends BaseActivity {
         initBaseToolbar();
         setContentView(View.inflate(this, setContentViewID(), null));
         unbinder = ButterKnife.bind(this);
-        initView();
         setStatusBar();
+        initView();
     }
 
     public abstract
@@ -101,12 +101,15 @@ public abstract class BaseTooBarActivity extends BaseActivity {
      * 初始化状态栏
      */
     protected void setStatusBar() {
+        StatusBarUtil.setColor(this, getResources().getColor(R.color.white), 0);
+        StatusBarUtil.setLightMode(this, R.color.toolbar_color);
 //        有颜色全透状态栏
-        StatusBarUtil.setColor(this, getResources().getColor(R.color.toolbar_color), 0);
+//        StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimary), 0);
 //        浸入式状态栏
+//      StatusBarUtil.setTransparentForImageViewInFragment(this, null);
+//        浸入式状态栏--我之前使用的现在改为上面的使用方法
 //      StatusBarUtil.setTranslucentForImageView(this, 0, null);
     }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();

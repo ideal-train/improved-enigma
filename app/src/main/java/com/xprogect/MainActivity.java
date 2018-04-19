@@ -28,7 +28,11 @@ public class MainActivity extends BaseTooBarActivity {
 
     @Override
     protected void setStatusBar() {
-        StatusBarUtil.setTranslucentForImageView(MainActivity.this, 0, null);
+        super.setStatusBar();
+    }
+
+    protected void setStatusBarAll() {
+        StatusBarUtil.setTransparentForImageViewInFragment(MainActivity.this, null);
     }
 
     @Override
@@ -50,7 +54,7 @@ public class MainActivity extends BaseTooBarActivity {
                         switchFragment(HomeFragment.getInstance(), bundle);
                         break;
                     case R.id.rb_wiki:
-                        bundle.putInt("home",  OhterWay.FIND_1);
+                        bundle.putInt("home", OhterWay.FIND_1);
                         switchFragment(FindFragment.getInstance(), bundle);
                         break;
                     case R.id.rb_chats:
@@ -60,7 +64,8 @@ public class MainActivity extends BaseTooBarActivity {
                     case R.id.rb_mine:
                         bundle.putInt("home", OhterWay.MINE_3);
                         switchFragment(new HomeFragment(), bundle);
-                        fakeStatusBar.setVisibility(View.GONE);
+//                        fakeStatusBar.setVisibility(View.GONE);
+                        setStatusBarAll();
                         break;
                     default:
                         break;
@@ -74,8 +79,9 @@ public class MainActivity extends BaseTooBarActivity {
 
     public void switchFragment(Fragment fragment, Bundle bundle) {
         try {
-            fakeStatusBar.setVisibility(View.VISIBLE);
+//            fakeStatusBar.setVisibility(View.VISIBLE);
 //            FragmentManager manager = getChildFragmentManager();
+            setStatusBar();
             FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction ft = manager.beginTransaction();
             if (bundle != null) {
