@@ -5,8 +5,9 @@ def releaseTime() {
 }
 
 android {
-    compileSdkVersion rootProject.ext.androidCompileSdkVersion
-    buildToolsVersion rootProject.ext.androidBuildToolsVersion
+    def globalConfiguration = rootProject.extensions.getByName("ext").android
+    compileSdkVersion globalConfiguration.androidCompileSdkVersion
+    buildToolsVersion globalConfiguration.androidBuildToolsVersion
     signingConfigs {
         developKey {
             keyAlias KEYALIAS
@@ -14,29 +15,28 @@ android {
             storeFile file(STOREFILE)
             storePassword STOREPASSWORD
         }
-
     }
+
     defaultConfig {
-        applicationId rootProject.ext.applicationId
-        minSdkVersion rootProject.ext.androidMinSdkVersion
-        targetSdkVersion rootProject.ext.androidTargetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
+        applicationId globalConfiguration.applicationId
+        minSdkVersion globalConfiguration.androidMinSdkVersion
+        targetSdkVersion globalConfiguration.androidTargetSdkVersion
+        versionCode globalConfiguration.yourVersionCode
+        versionName globalConfiguration.yourVersionName
         flavorDimensions "versionCode"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
-
     android.applicationVariants.all { variant ->
         // 这里修改apk文件名
-        def fileName = "${releaseTime() }-Android_Retrofit+Rx_版本号-${defaultConfig.versionCode}_版本名-${defaultConfig.versionName}_${variant.buildType.name}.apk"
+        def fileName = "${releaseTime()}-Android_Retrofit+Rx_版本号-${defaultConfig.versionCode}_版本名-${defaultConfig.versionName}_${variant.buildType.name}.apk"
         variant.outputs.all { output ->
             outputFileName = fileName
         }
     }
 
-    productFlavors{
-        ID_APP{
+    productFlavors {
+        ID_APP {
             buildConfigField("String", "APP_CHANNEL_ID", '"APP"')
         }
 //        ID_10002{
@@ -50,6 +50,7 @@ android {
             signingConfig signingConfigs.developKey
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
         release {
             minifyEnabled false
             signingConfig signingConfigs.developKey
@@ -59,21 +60,15 @@ android {
 }
 
 dependencies {
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    def deployDependencies = rootProject.ext.deployDependencies
-    compile deployDependencies.constraint
-    compile(deployDependencies.appcompat_v7) { exclude module: 'support-v4' }
-    compile(deployDependencies.support_v4) { force = true }
-    compile deployDependencies.constraint
-    testImplementation 'junit:junit:4.12'
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile project(':x_library')
-    compile androidDependencies.butterknife
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    def configDependencies = rootProject.ext.configDependencies
+
+    api(configDependencies.appcompat_v7) { exclude module: 'support-v4' }
+    api(configDependencies.support_v4) { force = true }
+    implementation project(':x_library')
+    api androidDependencies.butterknife
+    annotationProcessor androidDependencies["butterknife-compiler"]
     //  retrofit2需要相关的依赖
-    compile 'com.squareup.retrofit2:retrofit:2.3.0'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.5.0'
+    api 'com.squareup.retrofit2:retrofit:2.3.0'
+    api 'com.squareup.okhttp3:logging-interceptor:3.5.0'
 }

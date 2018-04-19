@@ -1,6 +1,7 @@
 package com.xprogect.testtitle;
 
 import android.content.DialogInterface;
+import android.support.v4.content.ContextCompat;
 
 import com.xprogect.application.R;
 import com.xprogect.enums.OhterWay;
@@ -32,7 +33,7 @@ public class TitleActivity extends BaseTooBarActivity implements DialogInterface
                 break;
             case OhterWay.HOME_0:
                 setTitle(OhterWay.getFlavour(page));
-                StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimary), 0);
+                StatusBarUtil.setColor(this, ContextCompat.getColor(this,R.color.colorPrimary), 0);
                 StatusBarUtil.setDarkMode(this);
                 break;
             case OhterWay.MINE_3:

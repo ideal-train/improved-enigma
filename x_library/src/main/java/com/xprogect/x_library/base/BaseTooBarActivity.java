@@ -6,6 +6,7 @@ import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
@@ -101,10 +102,10 @@ public abstract class BaseTooBarActivity extends BaseActivity {
      * 初始化状态栏
      */
     protected void setStatusBar() {
-        StatusBarUtil.setColor(this, getResources().getColor(R.color.white), 0);
+        StatusBarUtil.setColor(this, ContextCompat.getColor(this, R.color.white), 0);
         StatusBarUtil.setLightMode(this, R.color.toolbar_color);
 //        有颜色全透状态栏
-//        StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimary), 0);
+//        StatusBarUtil.setColor(this, ContextCompat.getColor(this,R.color.colorPrimary), 0);
 //        浸入式状态栏
 //      StatusBarUtil.setTransparentForImageViewInFragment(this, null);
 //        浸入式状态栏--我之前使用的现在改为上面的使用方法

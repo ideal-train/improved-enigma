@@ -1,16 +1,16 @@
 apply plugin: 'com.android.library'
 
 android {
-    //我只想把适合自己使用的方法加入进来，一点点来吧
-    compileSdkVersion rootProject.ext.androidCompileSdkVersion
+    //我只想把适合自己使用的方法加入进来，一点点来吧,但他并不一定适合你，拿你喜欢的吧。
+    def globalConfiguration = rootProject.extensions.getByName("ext").android
+    compileSdkVersion globalConfiguration.androidCompileSdkVersion
     defaultConfig {
-        minSdkVersion rootProject.ext.androidMinSdkVersion
-        targetSdkVersion rootProject.ext.androidTargetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
+        minSdkVersion globalConfiguration.androidMinSdkVersion
+        targetSdkVersion globalConfiguration.androidTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
@@ -19,35 +19,35 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    def deployDependencies = rootProject.ext.configDependencies
+    api deployDependencies.design
+    api deployDependencies.constraint
+    androidTestCompile(deployDependencies["espresso-core"], {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    testImplementation deployDependencies.junit
 
-    testImplementation 'junit:junit:4.12'
     def androidDependencies = rootProject.ext.androidDependencies
-    // gson
-    compile androidDependencies.circleimageview
-    compile androidDependencies.glide
+//     gson
+    api androidDependencies.circleimageview
+    api androidDependencies.glide
 //    因为下方retrofit2中集成了gson 这里不再单独集成了
-//    compile androidDependencies.gson
-    compile androidDependencies.logger
-    compile androidDependencies.butterknife
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    //    规范安卓UI响应 以RxJava的形式来处理UI事件
+//    api androidDependencies.gson
+    api androidDependencies.logger
+    api androidDependencies.butterknife
+    annotationProcessor androidDependencies["butterknife-compiler"]
+//    规范安卓UI响应 以RxJava的形式来处理UI事件
 //    compile androidDependencies.rxbinding
-    compile deployDependencies.design
-    //  retrofit2需要相关的依赖
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
-//    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-//    compile 'io.reactivex.rxjava2:rxjava:2.1.1'
-    compile 'io.reactivex:rxandroid:1.2.1'
-    compile 'io.reactivex:rxjava:1.1.6'
 
-
+//    retrofit2需要相关的依赖
+    api 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
+    api 'com.squareup.retrofit2:converter-gson:2.3.0'
+//    api 'io.reactivex.rxjava2:rxandroid:2.0.1'
+//    api 'io.reactivex.rxjava2:rxjava:2.1.1'
+    api 'io.reactivex:rxandroid:1.2.1'
+    api 'io.reactivex:rxjava:1.1.6'
 }
