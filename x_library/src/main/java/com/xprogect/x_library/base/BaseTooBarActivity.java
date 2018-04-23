@@ -66,7 +66,7 @@ public abstract class BaseTooBarActivity extends BaseActivity {
     /**
      * 中间标题部分
      */
-    TextView mToolTarTitle;
+    protected TextView mToolTarTitle;
     /**
      * 右侧 点击区域
      */

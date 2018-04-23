@@ -1,8 +1,11 @@
 package com.xprogect.home;
 
 
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.widget.TextView;
 
@@ -19,9 +22,9 @@ import butterknife.OnClick;
  */
 public class HomeFragment extends BaseFragment {
     @BindView(R.id.fg_tv)
-    TextView fg_tv;
+    TextView mFgtv;
 
-    private int  page=-1;
+    private int page = -1;
     private static HomeFragment myFragment;
 
 
@@ -44,22 +47,32 @@ public class HomeFragment extends BaseFragment {
     protected void initView(View view) {
 //getResources().geti
         Bundle bundle = this.getArguments();
-        fg_tv.setText( OhterWay.getFlavour(page=bundle.getInt("home")));
+        mFgtv.setText(OhterWay.getFlavour(page = bundle.getInt("home")));
 
 
 //        otherWay(OhterWay.FIND_1);
 
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mFgtv.setTransitionName("ShowTitle");
+        }
     }
 
 
-    private void otherWay(@OhterWay.Flavour int type){
+    private void otherWay(@OhterWay.Flavour int type) {
 
     }
 
-    @OnClick(R.id.fg_tv)
-    protected void mClick(){
-        startActivity(new Intent(getActivity(), TitleActivity.class).putExtra("page",page));
+    @OnClick(R.id.ll_click)
+    protected void mClick() {
+        Intent mIntent = new Intent(getActivity(), TitleActivity.class).putExtra("page", page);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            android.util.Pair<View, String> pair1 = new Pair(mFgtv, mFgtv.getTransitionName());
+//            平滑的将一个控件平移的过渡到第二个activity
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), pair1);
+            startActivity(mIntent, options.toBundle());
+        } else {
+            startActivity(mIntent);
+        }
     }
 
 

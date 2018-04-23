@@ -1,6 +1,7 @@
 package com.xprogect.title;
 
 import android.content.DialogInterface;
+import android.os.Build;
 import android.support.v4.content.ContextCompat;
 
 import com.xprogect.application.R;
@@ -27,13 +28,13 @@ public class TitleActivity extends BaseTooBarActivity implements DialogInterface
         page = getIntent().getIntExtra("page", 0);
         switch (page) {
             case OhterWay.CHAT_2:
-                setRightTxtTitleBar(OhterWay.getFlavour(page),"发布");
+                setRightTxtTitleBar(OhterWay.getFlavour(page), "发布");
                 break;
             case OhterWay.FIND_1:
                 break;
             case OhterWay.HOME_0:
                 setTitle(OhterWay.getFlavour(page));
-                StatusBarUtil.setColor(this, ContextCompat.getColor(this,R.color.colorPrimary), 0);
+                StatusBarUtil.setColor(this, ContextCompat.getColor(this, R.color.colorPrimary), 0);
                 StatusBarUtil.setDarkMode(this);
                 break;
             case OhterWay.MINE_3:
@@ -42,6 +43,11 @@ public class TitleActivity extends BaseTooBarActivity implements DialogInterface
             default:
                 break;
         }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (page != OhterWay.MINE_3) {
+                mToolTarTitle.setTransitionName("ShowTitle");
+            }
+        }
     }
 
     @Override
@@ -49,7 +55,7 @@ public class TitleActivity extends BaseTooBarActivity implements DialogInterface
         super.rightAction();
 //        AlertDialog dialog=DialogUtil.getAlertDialog(this,"正文","按钮");
 //        dialog.show();
-        DialogUtil.successDialog(this,"正文",this);
+        DialogUtil.successDialog(this, "正文", this);
         toast("点击了右上角");
     }
 
