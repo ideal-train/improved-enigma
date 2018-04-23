@@ -69,6 +69,6 @@ dependencies {
     api androidDependencies.butterknife
     annotationProcessor androidDependencies["butterknife-compiler"]
     //  retrofit2需要相关的依赖
-    api 'com.squareup.retrofit2:retrofit:2.3.0'
-    api 'com.squareup.okhttp3:logging-interceptor:3.5.0'
+    api androidDependencies.retrofit2
+    api androidDependencies["logging-interceptor"]
 }

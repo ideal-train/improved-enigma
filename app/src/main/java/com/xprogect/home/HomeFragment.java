@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.xprogect.application.R;
 import com.xprogect.enums.OhterWay;
-import com.xprogect.testtitle.TitleActivity;
+import com.xprogect.title.TitleActivity;
 import com.xprogect.x_library.base.BaseFragment;
 
 import butterknife.BindView;

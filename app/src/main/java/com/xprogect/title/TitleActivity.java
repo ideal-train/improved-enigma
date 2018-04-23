@@ -1,4 +1,4 @@
-package com.xprogect.testtitle;
+package com.xprogect.title;
 
 import android.content.DialogInterface;
 import android.support.v4.content.ContextCompat;

@@ -108,7 +108,7 @@ public abstract class BaseTooBarActivity extends BaseActivity {
 //        StatusBarUtil.setColor(this, ContextCompat.getColor(this,R.color.colorPrimary), 0);
 //        浸入式状态栏
 //      StatusBarUtil.setTransparentForImageViewInFragment(this, null);
-//        浸入式状态栏--我之前使用的现在改为上面的使用方法
+//        浸入式状态栏--这个是我之前使用的现在改为上面的使用方法(状态栏有层阴影)
 //      StatusBarUtil.setTranslucentForImageView(this, 0, null);
     }
     @Override
