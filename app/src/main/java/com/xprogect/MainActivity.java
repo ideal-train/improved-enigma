@@ -1,5 +1,6 @@
 package com.xprogect;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
@@ -11,12 +12,14 @@ import com.xprogect.application.R;
 import com.xprogect.enums.OhterWay;
 import com.xprogect.find.FindFragment;
 import com.xprogect.home.HomeFragment;
+import com.xprogect.testbugly.BuglyTestActivity;
 import com.xprogect.x_library.base.BaseTooBarActivity;
 import com.xprogect.x_library.utils.MyLog;
 import com.xprogect.x_library.utils.StatusBarUtil;
 import com.xprogect.x_library.widget.KeyRadioGroupV1;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 
 public class MainActivity extends BaseTooBarActivity {
@@ -92,6 +95,14 @@ public class MainActivity extends BaseTooBarActivity {
         } catch (Exception exceptione) {
         }
     }
+
+
+    @OnClick(R.id.rb_fabu)
+    protected void mClick() {
+        Intent mIntent = new Intent(this, BuglyTestActivity.class);
+        startActivity(mIntent);
+    }
+
 
     @Override
     public void onBackPressed() {
