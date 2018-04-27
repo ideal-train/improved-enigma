@@ -8,9 +8,9 @@ import android.widget.TextView;
 import com.xprogect.application.R;
 import com.xprogect.bean.HomeBean;
 import com.xprogect.enums.OhterWay;
-import com.xprogect.x_library.utils.SPUtil;
 import com.xprogect.x_library.base.BaseFragment;
 import com.xprogect.x_library.utils.MyLog;
+import com.xprogect.x_library.utils.SPUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;

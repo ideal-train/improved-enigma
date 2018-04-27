@@ -111,6 +111,7 @@ public abstract class BaseTooBarActivity extends BaseActivity {
 //        浸入式状态栏--这个是我之前使用的现在改为上面的使用方法(状态栏有层阴影)
 //      StatusBarUtil.setTranslucentForImageView(this, 0, null);
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -265,7 +266,7 @@ public abstract class BaseTooBarActivity extends BaseActivity {
      * 左侧返回 中间标题 右侧文字
      *
      * @param title 中间标题
-     * @param lImg 右侧标题
+     * @param lImg  右侧标题
      */
     @SuppressLint("SupportAnnotationUsage")
     public void setRightTxtTitleBar(@StringRes String title, @StringRes String lImg) {

@@ -3,12 +3,16 @@ package com.xprogect.title;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
+import android.widget.TextView;
 
 import com.xprogect.application.R;
 import com.xprogect.enums.OhterWay;
 import com.xprogect.x_library.base.BaseTooBarActivity;
+import com.xprogect.x_library.utils.DeviceUtils;
 import com.xprogect.x_library.utils.DialogUtil;
 import com.xprogect.x_library.utils.StatusBarUtil;
+
+import butterknife.BindView;
 
 /**
  * Created by Administrator on 2018/3/28
@@ -17,6 +21,8 @@ import com.xprogect.x_library.utils.StatusBarUtil;
 public class TitleActivity extends BaseTooBarActivity implements DialogInterface.OnClickListener {
     @OhterWay.Flavour
     private int page;
+    @BindView(R.id.fg_tv)
+    TextView mFgtv;
 
     @Override
     public int setContentViewID() {
@@ -48,7 +54,21 @@ public class TitleActivity extends BaseTooBarActivity implements DialogInterface
                 mToolTarTitle.setTransitionName("ShowTitle");
             }
         }
+        String mDeviceUtils =
+                "\n获取应用程序名称--" + DeviceUtils.getAppName(this)
+                        + "\n版本号--" + DeviceUtils.getVersionCode(this)
+                        + "\n版本名--" + DeviceUtils.getVersionName(this)
+                        + "\n判断设备是否root--" + DeviceUtils.isDeviceRoot()
+                        + "\n获取设备厂商--" + DeviceUtils.getManufacturer()
+                        + "\n获取设备型号--" + DeviceUtils.getModel()
+                        + "\n获取设备系统版本号--" + DeviceUtils.getSDKVersion()
+                        + "\n获取设备系统版本名--" + DeviceUtils.getSDKRelease()
+                        + "\n获取设备AndroidID--" + DeviceUtils.getAndroidID(this)
+                        + "\n获取设备MAC地址--" + DeviceUtils.getMacAddress(this)
+                        + "\n判断当前设备是否是手机--" + DeviceUtils.isPhone(this);
+        mFgtv.append(mDeviceUtils);
     }
+
 
     @Override
     public void rightAction() {

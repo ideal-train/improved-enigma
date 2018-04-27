@@ -30,14 +30,14 @@ public class MyLog {
     /**
      * Drawing toolbox
      */
-    static String LINE_SEPARATOR = System.getProperty("line.separator"); //等价于"\n\r"，唯一的作用是能装逼
+    static String LINE_SEPARATOR = System.getProperty("line.separator"); //等价于"\n\r"，此种写法屏蔽了 Windows和Linux的区别
     private static final char TOP_LEFT_CORNER = '╔';
     private static final char BOTTOM_LEFT_CORNER = '╚';
     private static final char MIDDLE_CORNER = '╟';
     private static final char HORIZONTAL_DOUBLE_LINE = '║';
     private static final String DOUBLE_DIVIDER = "════════════════════════════════════════════";
     private static final String SINGLE_DIVIDER = "────────────────────────────────────────────";
-    private static final String TOP_BORDER = LINE_SEPARATOR+TOP_LEFT_CORNER + DOUBLE_DIVIDER + DOUBLE_DIVIDER;
+    private static final String TOP_BORDER =" "+ LINE_SEPARATOR+TOP_LEFT_CORNER + DOUBLE_DIVIDER + DOUBLE_DIVIDER;
     private static final String BOTTOM_BORDER = BOTTOM_LEFT_CORNER + DOUBLE_DIVIDER + DOUBLE_DIVIDER;
     private static final String MIDDLE_BORDER = MIDDLE_CORNER + SINGLE_DIVIDER + SINGLE_DIVIDER;
     private static final char I = 'I', W = 'W', D = 'D', E = 'E', V = 'V', A = 'A', M = 'M';
@@ -248,15 +248,17 @@ public class MyLog {
         String className = stack[i].getFileName();
         String methodName = stack[i].getMethodName();
         int lineNumber = stack[i].getLineNumber();
-        StringBuilder sb = new StringBuilder();
+//        StringBuilder sb = new StringBuilder();
 
         printHunk(type, TOP_BORDER);
 
         printHunk(type, HORIZONTAL_DOUBLE_LINE + "   Location(所在页面位置):");
-        sb.append(HORIZONTAL_DOUBLE_LINE)
-                .append("   (").append(className).append(":").append(lineNumber).append(")# 方法名:").append(methodName);
-        printHunk(type, sb.toString());
-        printHunk(type, msg == null || msg.length == 0 ? BOTTOM_BORDER : MIDDLE_BORDER);
+//        sb.append(HORIZONTAL_DOUBLE_LINE)
+//                .append("   (").append(className).append(":").append(lineNumber).append(")# 方法名:").append(methodName);
+        printHunk(type, new StringBuilder().append(HORIZONTAL_DOUBLE_LINE)
+                .append("   (").append(className).append(":").append(lineNumber).append(")# 方法名:").append(methodName).toString());
+        printHunk(type,  MIDDLE_BORDER);
+//        printHunk(type, msg == null || msg.length == 0 ? BOTTOM_BORDER : MIDDLE_BORDER);
     }
 
     /**

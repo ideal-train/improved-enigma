@@ -14,7 +14,6 @@ import com.xprogect.find.FindFragment;
 import com.xprogect.home.HomeFragment;
 import com.xprogect.testbugly.BuglyTestActivity;
 import com.xprogect.x_library.base.BaseTooBarActivity;
-import com.xprogect.x_library.utils.MyLog;
 import com.xprogect.x_library.utils.StatusBarUtil;
 import com.xprogect.x_library.widget.KeyRadioGroupV1;
 
@@ -46,7 +45,6 @@ public class MainActivity extends BaseTooBarActivity {
     @Override
     public void initView() {
         hitToolBar();
-        MyLog.d("MainActivity", "onCreate:" + "");
         final Bundle bundle = new Bundle();
         rgBottom.setOnCheckedChangeListener(new KeyRadioGroupV1.OnCheckedChangeListener() {
             @Override

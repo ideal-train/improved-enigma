@@ -25,7 +25,8 @@ import java.util.Locale;
  * 尽量少使用全局变量
  * <p>
  * Tinker推荐的接入方式 enableProxyApplication = false 的情况 下extends TinkerApplication
- *这里采用的是反射Application的方式集成，无须改造Application
+ * 这里采用的是反射Application的方式集成，无须改造Application
+ *
  * @author Administrator
  */
 public class MyApplication extends Application {
@@ -89,7 +90,7 @@ public class MyApplication extends Application {
 
             @Override
             public void onUpgradeNoVersion(boolean b) {
-                Toast.makeText(getApplicationContext(), "最新版本", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "最新版本补丁", Toast.LENGTH_SHORT).show();
             }
 
             @Override
