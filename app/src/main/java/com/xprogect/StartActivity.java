@@ -28,7 +28,7 @@ public class StartActivity extends BaseTooBarActivity {
     }
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         hitToolBar();
         //这里是第二种方法 消除启动前黑白屏
         setTranslucentStatus(true);

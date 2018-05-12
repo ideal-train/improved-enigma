@@ -2,6 +2,7 @@ package com.xprogect.title;
 
 import android.content.DialogInterface;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.widget.TextView;
 
@@ -30,7 +31,7 @@ public class TitleActivity extends BaseTooBarActivity implements DialogInterface
     }
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         page = getIntent().getIntExtra("page", 0);
         switch (page) {
             case OhterWay.CHAT_2:

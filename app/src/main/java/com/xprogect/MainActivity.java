@@ -43,7 +43,7 @@ public class MainActivity extends BaseTooBarActivity {
     }
 
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         hitToolBar();
         final Bundle bundle = new Bundle();
         rgBottom.setOnCheckedChangeListener(new KeyRadioGroupV1.OnCheckedChangeListener() {

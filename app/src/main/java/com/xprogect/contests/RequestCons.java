@@ -7,6 +7,7 @@ public class RequestCons {
 
     /**
      * 主机IP(域名)
+	 请求协议://IP+端口/接口地址/接口参数/参数值
      */
     public static final String DOMAIN = "https://www.rongtousky.com/";
     /**

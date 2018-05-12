@@ -89,14 +89,14 @@ public abstract class BaseTooBarActivity extends BaseActivity {
         setContentView(View.inflate(this, setContentViewID(), null));
         unbinder = ButterKnife.bind(this);
         setStatusBar();
-        initView();
+        initView(savedInstanceState);
     }
 
     public abstract
     @LayoutRes
     int setContentViewID();
 
-    public abstract void initView();
+    public abstract void initView(Bundle savedInstanceState);
 
     /**
      * 初始化状态栏
