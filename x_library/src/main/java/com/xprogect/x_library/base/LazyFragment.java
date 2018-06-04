@@ -7,9 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-
 /**
  * Created by JFL on 2017/12/7
  * Email：WarwG1@163.com
@@ -20,13 +17,10 @@ public abstract class LazyFragment extends BaseFragment {
 
     private boolean isInit;                  //初始化是否完成
     protected boolean isLoad = false;
-    private Unbinder unbinder;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(setContentView(), container, false);
-        unbinder = ButterKnife.bind(this, view);
-        initView(view);
+        super.onCreateView(inflater, container, savedInstanceState);
         isInit = true;
         initPrepare();
         return view;
@@ -36,17 +30,28 @@ public abstract class LazyFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
     }
 
-    /**
-     * 视图是否已经对用户可见，系统的方法
+    /*
+     * 视图是否已经对用户可见---系统的方法
+     *
+     * 此方法在控件初始化前调用，所以不能在此方法中直接操作，控件会出现空指针
+     * 为什么呢？
+     * 是这样的：执行setAdapter的时候，会调用setUserVisibleHint()方法，
+     * 并且，只有当setAdapter方法执行完之后，才会进入到Fragment到生命周期，
+     * 因此setUserVisibleHint()方法在所有生命周期之前被调用。
+     * 控件初始化前调用?那这个方法不就有问题么？
+     * 那是因为当fragment显示时还会回调这个方法setUserVisibleHint
      */
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        //先判断映射关系再判断 是否可见
+        /*
+         所以要 先判断映射关系再判断 是否可见
+
+         那 就有人说了 没初始化完毕肯定是不可见的啊，那怎么不在这里先if(isVisibleToUser)
+         嗯。。。  是这样的 算了 看initPrepare的注释吧
+         */
         initPrepare();
     }
 
@@ -56,12 +61,16 @@ public abstract class LazyFragment extends BaseFragment {
     public void onDestroyView() {
         isInit = false;
         isLoad = false;
-        onBaseDestroyView();
+//        这个方法在这里没什么意义 非必须 看需求吧，以后有需求了再解开注释
+        //        onBaseDestroyView();
         super.onDestroy();
-        unbinder.unbind();
     }
 
-    //同步锁
+    /**
+     * 同步锁
+     * 或许你有个疑问，为什么把逻辑都写在这里？
+     * 因为逻辑并不多，统一处理，方便后面回头看的时候容易找到懒加载实现的关键代码
+     */
     private synchronized void initPrepare() {
         if (!isInit) {
             return;
@@ -77,24 +86,6 @@ public abstract class LazyFragment extends BaseFragment {
         }
     }
 
-
-    /**
-     * 设置Fragment要显示的布局
-     *
-     * @return 布局的layoutId
-     */
-    @Override
-    protected abstract int setContentView();
-
-    /**
-     * 初始化控件操作
-     *
-     * @param view
-     */
-    @Override
-    protected abstract void initView(View view);
-
-
     /**
      * 当视图初始化
      * 并且对用户可见
@@ -103,9 +94,9 @@ public abstract class LazyFragment extends BaseFragment {
     protected abstract void onUserVisible();
 
     /**
-     * 页面不可见时操作
+     * 页面不可见时操作(仅在Viewpager中有效)
      */
     protected abstract void onUserInvisible();
 
-    protected abstract void onBaseDestroyView();
+//    protected abstract void onBaseDestroyView();
 }

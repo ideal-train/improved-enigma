@@ -30,6 +30,8 @@ public abstract class BaseFragment extends Fragment implements BaseView {
 
     private SoftKeyGoardUtil softKeyGoardUtil;
     private Unbinder unbinder;
+    protected View view;
+    private static final String STATE_SAVE_IS_HIDDEN = "STATE_SAVE_IS_HIDDEN";
 
     public BaseFragment() {
 
@@ -37,8 +39,19 @@ public abstract class BaseFragment extends Fragment implements BaseView {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(setContentView(), container, false);
-        unbinder=ButterKnife.bind(this, view);
+        view = inflater.inflate(setContentView(), container, false);
+        unbinder = ButterKnife.bind(this, view);
+//        if (savedInstanceState != null) {
+//            boolean isSupportHidden = savedInstanceState.getBoolean(STATE_SAVE_IS_HIDDEN);
+//
+//            FragmentTransaction ft = getFragmentManager().beginTransaction();
+//            if (isSupportHidden) {
+//                ft.hide(this);
+//            } else {
+//                ft.show(this);
+//            }
+//            ft.commit();
+//        }
         initView(view);
         return view;
     }

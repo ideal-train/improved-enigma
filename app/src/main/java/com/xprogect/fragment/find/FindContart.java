@@ -1,4 +1,4 @@
-package com.xprogect.find;
+package com.xprogect.fragment.find;
 
 import com.xprogect.bean.HomeBean;
 import com.xprogect.x_library.basemvp.BaseView;

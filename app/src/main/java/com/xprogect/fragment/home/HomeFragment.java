@@ -1,4 +1,4 @@
-package com.xprogect.home;
+package com.xprogect.fragment.home;
 
 
 import android.app.ActivityOptions;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.xprogect.application.R;
 import com.xprogect.enums.OhterWay;
 import com.xprogect.title.TitleActivity;
-import com.xprogect.x_library.base.BaseFragment;
+import com.xprogect.x_library.base.LazyFragment;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -20,7 +20,19 @@ import butterknife.OnClick;
 /**
  * 首页
  */
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends LazyFragment {
+
+
+    @Override
+    protected void onUserVisible() {
+        toast("可见");
+    }
+
+    @Override
+    protected void onUserInvisible() {
+        toast("切换了页面");
+    }
+
     @BindView(R.id.fg_tv)
     TextView mFgtv;
 
@@ -74,6 +86,5 @@ public class HomeFragment extends BaseFragment {
             startActivity(mIntent);
         }
     }
-
 
 }

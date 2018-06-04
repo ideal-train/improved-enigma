@@ -1,4 +1,4 @@
-package com.xprogect.find;
+package com.xprogect.fragment.find;
 
 
 import android.os.Bundle;

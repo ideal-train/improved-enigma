@@ -6,7 +6,7 @@ apply from: 'tinker-support.gradle'
 // 多渠道使用walle示例（注：多渠道使用）
 //apply from: 'multiple-channel.gradle'
 def releaseTime() {
-    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+    return new Date().format("yyyy-MM-dd-HH-mm", TimeZone.getTimeZone("UTC"))
 }
 
 android {
@@ -38,7 +38,8 @@ android {
 
     android.applicationVariants.all { variant ->
         // 这里修改apk文件名
-        def fileName = "${releaseTime()}-Android_Retrofit+Rx_版本号-${defaultConfig.versionCode}_版本名-${defaultConfig.versionName}_${variant.buildType.name}.apk"
+//        def fileName = "Retrofit+Rx_${releaseTime()}-Android_版本号-${defaultConfig.versionCode}_版本名-${defaultConfig.versionName}_${variant.buildType.name}.apk"
+        def fileName = "Retrofit+Rx-Android_${defaultConfig.versionCode}版本_${variant.buildType.name}_${releaseTime()}.apk"
         variant.outputs.all { output ->
             outputFileName = fileName
         }
@@ -61,8 +62,8 @@ android {
         }
 
         release {
-//            开启混淆
-            minifyEnabled true
+//            暂时不开启混淆
+            minifyEnabled false
             signingConfig signingConfigs.developKey
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

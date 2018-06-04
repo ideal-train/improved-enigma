@@ -10,8 +10,8 @@ import android.view.View;
 
 import com.xprogect.application.R;
 import com.xprogect.enums.OhterWay;
-import com.xprogect.find.FindFragment;
-import com.xprogect.home.HomeFragment;
+import com.xprogect.fragment.find.FindFragment;
+import com.xprogect.fragment.home.HomeFragment;
 import com.xprogect.testbugly.BuglyTestActivity;
 import com.xprogect.x_library.base.BaseTooBarActivity;
 import com.xprogect.x_library.utils.StatusBarUtil;
@@ -84,10 +84,16 @@ public class MainActivity extends BaseTooBarActivity {
 //            FragmentManager manager = getChildFragmentManager();
             setStatusBar();
             FragmentManager manager = getSupportFragmentManager();
+            //开始事务（每次改变Fragment管理器之后都要提交）
             FragmentTransaction ft = manager.beginTransaction();
             if (bundle != null) {
                 fragment.setArguments(bundle);
             }
+/*            当用开始事务时添加Fragment我建议用add（）方法添加，
+            不要用replace（）来替换Fragment，
+            因为用add（）添加的话就可以保存这个Fragment了，从而Fragment中的数据就不会丢失了，
+            如果你用replace（）来替换的话，每次都相当于打开一个新的Fragment，
+            这样的话每次都要重新添加一次数据，这样体验的效果就不是很好*/
             ft.replace(R.id.fl_body, fragment);
             ft.commit();
         } catch (Exception exceptione) {
