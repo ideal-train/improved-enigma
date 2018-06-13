@@ -115,7 +115,9 @@ public abstract class BaseTooBarActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unbinder.unbind();
+        if (unbinder != null) {
+            unbinder.unbind();
+        }
         if (Util.isOnMainThread() && !this.isFinishing()) {
             Glide.with(this).pauseRequests();
         }

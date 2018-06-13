@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -67,7 +68,8 @@ public abstract class BaseFragment extends Fragment implements BaseView {
      *
      * @return 布局的layoutId
      */
-    protected abstract int setContentView();
+    protected abstract @LayoutRes
+    int setContentView();
 
     /**
      * 初始化控件操作
