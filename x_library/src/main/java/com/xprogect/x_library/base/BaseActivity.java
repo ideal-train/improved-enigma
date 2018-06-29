@@ -79,6 +79,7 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
         for (Activity act : allActivity) {
             act.finish();
         }
+        allActivity.clear();
     }
 
     @SuppressLint("SupportAnnotationUsage")

@@ -12,7 +12,7 @@ import com.xprogect.application.R;
 import com.xprogect.enums.OhterWay;
 import com.xprogect.fragment.find.FindFragment;
 import com.xprogect.fragment.home.HomeFragment;
-import com.xprogect.testbugly.BuglyTestActivity;
+import com.xprogect.lifecycle.LifeCycleActivity;
 import com.xprogect.x_library.base.BaseTooBarActivity;
 import com.xprogect.x_library.utils.StatusBarUtil;
 import com.xprogect.x_library.widget.KeyRadioGroupV1;
@@ -93,7 +93,8 @@ public class MainActivity extends BaseTooBarActivity {
             不要用replace（）来替换Fragment，
             因为用add（）添加的话就可以保存这个Fragment了，从而Fragment中的数据就不会丢失了，
             如果你用replace（）来替换的话，每次都相当于打开一个新的Fragment，
-            这样的话每次都要重新添加一次数据，这样体验的效果就不是很好*/
+            这样的话每次都要重新添加一次数据，这样体验的效果就不是很好
+            我这里是按我的目前需求来的，未使用add*/
             ft.replace(R.id.fl_body, fragment);
             ft.commit();
         } catch (Exception exceptione) {
@@ -103,7 +104,8 @@ public class MainActivity extends BaseTooBarActivity {
 
     @OnClick(R.id.rb_fabu)
     protected void mClick() {
-        Intent mIntent = new Intent(this, BuglyTestActivity.class);
+        Intent mIntent = new Intent(this, LifeCycleActivity.class);
+//        Intent mIntent = new Intent(this, BuglyTestActivity.class);
         startActivity(mIntent);
     }
 

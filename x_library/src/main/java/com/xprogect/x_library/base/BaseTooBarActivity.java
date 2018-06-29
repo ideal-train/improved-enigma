@@ -39,6 +39,7 @@ public abstract class BaseTooBarActivity extends BaseActivity {
     //    initView中使用
     //    第一种默认用法：setRightTxtTitleBar("银行卡管理", "添加");
     //    第二种扩展用法  getLayoutInflater().inflate(R.layout.toolbar_layout_default, getBaseToolBar());
+    //    第三种  隐藏toobar hitToolBar();;
 
     private LinearLayout rootLayout;
     private Toolbar mToolbar;
