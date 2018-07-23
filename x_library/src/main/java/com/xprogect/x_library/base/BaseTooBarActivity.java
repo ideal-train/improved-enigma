@@ -254,7 +254,7 @@ public abstract class BaseTooBarActivity extends BaseActivity {
         if (mToolTarTitle == null)
             return;
         mToolTarTitle.setText(title);
-        mLeftClick();
+//        mLeftClick();
     }
 
     public void setTitle(@StringRes int title) {
@@ -262,7 +262,7 @@ public abstract class BaseTooBarActivity extends BaseActivity {
         if (mToolTarTitle == null)
             return;
         mToolTarTitle.setText(getString(title));
-        mLeftClick();
+//        mLeftClick();
     }
 
     /**

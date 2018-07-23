@@ -1,6 +1,7 @@
 package com.xprogect.title;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -8,12 +9,14 @@ import android.widget.TextView;
 
 import com.xprogect.application.R;
 import com.xprogect.enums.OhterWay;
+import com.xprogect.function.FunctionActivity;
 import com.xprogect.x_library.base.BaseTooBarActivity;
 import com.xprogect.x_library.utils.DeviceUtils;
 import com.xprogect.x_library.utils.DialogUtil;
 import com.xprogect.x_library.utils.StatusBarUtil;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2018/3/28
@@ -83,5 +86,18 @@ public class TitleActivity extends BaseTooBarActivity implements DialogInterface
     @Override
     public void onClick(DialogInterface dialog, int which) {
         toast("点击了确定");
+    }
+
+    @OnClick(R.id.fg_tv)
+    public void onClick() {
+        Intent mIntent = new Intent(this, FunctionActivity.class).putExtra("page", page);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            android.util.Pair<View, String> pair1 = new Pair(mFgtv, mFgtv.getTransitionName());
+////            平滑的将一个控件平移的过渡到第二个activity
+//            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this, pair1);
+//            startActivity(mIntent, options.toBundle());
+//        } else {
+            startActivity(mIntent);
+//        }
     }
 }

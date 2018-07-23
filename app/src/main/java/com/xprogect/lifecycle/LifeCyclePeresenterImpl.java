@@ -25,6 +25,8 @@ public class LifeCyclePeresenterImpl extends BasePresenter implements FindContar
     }
 
 
+    private String dsf;
+
     @Override
     public void getFindUrl() {
     }

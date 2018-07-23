@@ -49,7 +49,9 @@
         </provider>
 
         <!-- Bugly升级SDK配置结束 -->
-        <activity android:name="com.xprogect.lifecycle.LifeCycleActivity"></activity>
+        <activity android:name="com.xprogect.lifecycle.LifeCycleActivity" />
+        <activity android:name="com.xprogect.function.FunctionActivity" />
+        <activity android:name="com.xprogect.dagger.Dagger2Activity"></activity>
     </application>
 
 </manifest>
