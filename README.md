@@ -14,7 +14,7 @@
 ---
 * `使用注意项：`
 * 该项目因为集成了Bugly的热修复（基于微信的Tinker），tinket不支持install run 模式 ，请手动build assembleDebug 或者把 install run 模式禁用掉
-* 运行时暂时以debug模式运行，混淆还没有写好
+* 运行时暂时以debug模式运行
 
 ---
 都看到这里了，顺便给个。。。哎 别走啊，还没点。。。
